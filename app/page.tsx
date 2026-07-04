@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useState } from "react";
 import Footer from "@/components/Footer";
 import { products } from "@/data/products";
-import { useCart } from "@/context/CartContext";
 
 /* ─────────────────────────── SVG Icons ─────────────────────────── */
 const IconCart = () => (
@@ -477,144 +476,10 @@ function HeroVisual() {
 
 /* ─────────────────────────── Page ─────────────────────────── */
 export default function HomePage() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const { cartCount } = useCart();
-
-  const bar ="New arrivals live now  ·  Store pickup available  ·  COD available  ·  WhatsApp support available  ·  ";
-
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FAFAF9", color: "#1C1917" }}>
 
       {/* ──────────── 1. Announcement Bar ──────────── */}
-      <div className="w-full overflow-hidden py-2.5" style={{ backgroundColor: "#1C1917" }}>
-        <div className="lo-marquee-track">
-          {[bar, bar, bar].map((t, i) => (
-            <span key={i} className="inline-block px-6 text-white" style={{ fontSize: "11px", letterSpacing: "0.11em", textTransform: "uppercase" }}>
-              {t}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* ──────────── 2. Header ──────────── */}
-      <header className="sticky top-0 z-50 w-full border-b" style={{ backgroundColor: "#FFFFFF", borderColor: "#E7E5E4" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between" style={{ height: "72px" }}>
-
-            {/* Logo — bigger */}
-            <a href="/" aria-label="Life's Once – Home" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
-              <div className="relative" style={{ height: "52px", width: "148px" }}>
-                <Image
-                  src="/logo.png"
-                  alt="Life's Once"
-                  fill
-                  sizes="148px"
-                  className="object-contain"
-                  style={{ objectPosition: "left center" }}
-                  priority
-                />
-              </div>
-            </a>
-
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center" style={{ gap: "28px" }} aria-label="Main navigation">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="lo-nav-link"
-                  style={{ fontSize: "13px", fontWeight: 500, color: "#1C1917", letterSpacing: "0.04em" }}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-
-            {/* Right actions */}
-            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-              {/* Cart */}
-              <Link
-                href="/cart"
-                className="lo-btn-primary flex items-center gap-2 font-semibold"
-                style={{
-                  backgroundColor: "#1C1917",
-                  color: "#FFFFFF",
-                  fontSize: "13px",
-                  padding: "9px 18px",
-                  borderRadius: "8px",
-                  letterSpacing: "0.04em",
-                  textDecoration: "none",
-                  position: "relative",
-                }}
-                aria-label={`Shopping cart${cartCount > 0 ? `, ${cartCount} items` : ""}`}
-              >
-                <IconCart />
-                <span className="hidden sm:inline">Cart</span>
-                {cartCount > 0 && (
-                  <span
-                    style={{
-                      position: "absolute", top: "-6px", right: "-6px",
-                      backgroundColor: "#A16207", color: "#FFFFFF",
-                      borderRadius: "999px", fontSize: "10px", fontWeight: 700,
-                      minWidth: "18px", height: "18px",
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      padding: "0 4px",
-                    }}
-                  >
-                    {cartCount}
-                  </span>
-                )}
-              </Link>
-
-              {/* Hamburger */}
-              <button
-                className="lg:hidden flex items-center justify-center border cursor-pointer"
-                style={{ borderColor: "#D6D3D1", color: "#1C1917", width: "44px", height: "44px", borderRadius: "8px" }}
-                onClick={() => setMenuOpen((o) => !o)}
-                aria-label={menuOpen ? "Close menu" : "Open menu"}
-                aria-expanded={menuOpen}
-              >
-                {menuOpen ? <IconClose /> : <IconMenu />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Nav Drawer */}
-        <div
-          className="lo-mobile-menu lg:hidden border-t"
-          style={{
-            maxHeight: menuOpen ? "520px" : "0",
-            opacity: menuOpen ? 1 : 0,
-            borderColor: "#E7E5E4",
-            backgroundColor: "#FFFFFF",
-          }}
-        >
-          <nav className="max-w-7xl mx-auto px-4 py-3 flex flex-col" aria-label="Mobile navigation">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="flex items-center justify-between border-b py-3.5"
-                style={{ fontSize: "14px", fontWeight: 500, color: "#1C1917", borderColor: "#F5F5F4" }}
-              >
-                {link.label}
-                <IconArrow />
-              </a>
-            ))}
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2.5 mt-4 font-semibold"
-              style={{ color: "#15803D", fontSize: "14px", padding: "12px 16px", backgroundColor: "#F0FDF4", borderRadius: "8px" }}
-            >
-              <IconWhatsApp /> WhatsApp Us
-            </a>
-          </nav>
-        </div>
-      </header>
 
       {/* ──────────── 3. Hero — Split Layout ──────────── */}
       <section
@@ -1005,7 +870,7 @@ export default function HomePage() {
                 Shop
               </h4>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
-                {["New Arrivals", "Denim Jeans", "Shirts", "Polo T-Shirts", "Pants", "Winter Wear"].map((item) => (
+                {["New Arrivals", "All Products", "Polo T-Shirts", "Formal Pants", "Shirts + Jeans", "Drop Shoulder"].map((item) => (
                   <li key={item}>
                     <a href="/shop" className="lo-nav-link" style={{ fontSize: "13px", color: "#78716C", textDecoration: "none" }}>
                       {item}

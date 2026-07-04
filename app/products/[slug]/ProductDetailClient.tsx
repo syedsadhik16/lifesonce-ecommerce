@@ -62,11 +62,12 @@ const SIZE_HELP_URL = "https://wa.me/919384007074?text=Hi%20Life%E2%80%99s%20Onc
 
 const NAV_LINKS = [
   { label: "New Arrivals", href: "/#new-arrivals" },
-  { label: "Denim",       href: "/#categories"   },
-  { label: "Shirts",      href: "/#categories"   },
-  { label: "Polos",       href: "/#categories"   },
-  { label: "Pants",       href: "/#categories"   },
-  { label: "Winter Wear", href: "/#categories"   },
+  { label: "All Products", href: "/shop" },
+  { label: "Polo T-Shirts", href: "/collections/polo-tshirts-jeans" },
+  { label: "Formal Pants", href: "/collections/formal-pants" },
+  { label: "Shirts + Jeans", href: "/collections/shirt-jeans" },
+  { label: "Drop Shoulder", href: "/collections/drop-shoulder-tshirts-jeans" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 /* ─────────────────────────── Helpers ─────────────────────────── */
@@ -168,7 +169,7 @@ function NotFound() {
           padding: "14px 32px", borderRadius: "8px", textDecoration: "none",
         }}
       >
-        <IconArrowLeft /> Back to Home
+        <IconArrowLeft /> Back to Shop
       </Link>
     </div>
   );
@@ -322,9 +323,8 @@ export default function ProductDetailClient({ product }: { product: Product | nu
   const [selectedSize,  setSelectedSize]  = useState<string>("");
   const [selectedColor, setSelectedColor] = useState<string>("");
   const [cartMsg,       setCartMsg]       = useState<"idle" | "no-size" | "no-color" | "added">("idle");
-  const [menuOpen,      setMenuOpen]      = useState(false);
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
-  const { addToCart, cartCount }          = useCart();
+  const { addToCart }                     = useCart();
 
   if (!product) return <NotFound />;
 
@@ -347,145 +347,10 @@ export default function ProductDetailClient({ product }: { product: Product | nu
     setTimeout(() => setCartMsg("idle"), 3000);
   };
 
-  const announcement = "New arrivals live now  ·  Store pickup available  ·  COD available  ·  WhatsApp support available  ·  ";
-
   return (
     <div style={{ backgroundColor: "#FAFAF9", minHeight: "100vh", color: "#1C1917" }}>
 
       {/* ── Announcement Bar ── */}
-      <div className="w-full overflow-hidden py-2.5" style={{ backgroundColor: "#1C1917" }}>
-        <div className="lo-marquee-track">
-          {[announcement, announcement, announcement].map((t, i) => (
-            <span key={i} className="inline-block px-6 text-white" style={{ fontSize: "11px", letterSpacing: "0.11em", textTransform: "uppercase" }}>
-              {t}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Header ── */}
-      <header
-        className="sticky top-0 z-50 w-full border-b"
-        style={{ backgroundColor: "#FFFFFF", borderColor: "#E7E5E4" }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between" style={{ height: "72px" }}>
-
-            {/* Logo */}
-            <Link href="/" aria-label="Life's Once – Home" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
-              <div className="relative" style={{ height: "52px", width: "148px" }}>
-                <Image
-                  src="/logo.png"
-                  alt="Life's Once"
-                  fill
-                  sizes="148px"
-                  className="object-contain"
-                  style={{ objectPosition: "left center" }}
-                  priority
-                />
-              </div>
-            </Link>
-
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center" style={{ gap: "28px" }} aria-label="Main navigation">
-              {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="lo-nav-link"
-                  style={{ fontSize: "13px", fontWeight: 500, color: "#1C1917", letterSpacing: "0.04em", textDecoration: "none" }}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-
-            {/* Right */}
-            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-              <Link
-                href="/cart"
-                className="lo-btn-primary flex items-center gap-2 font-semibold"
-                style={{
-                  backgroundColor: "#1C1917", color: "#FFFFFF",
-                  fontSize: "13px", padding: "9px 18px", borderRadius: "8px",
-                  textDecoration: "none", letterSpacing: "0.04em",
-                  position: "relative",
-                }}
-                aria-label={`Shopping cart${cartCount > 0 ? `, ${cartCount} items` : ""}`}
-              >
-                <IconCart />
-                <span className="hidden sm:inline">Cart</span>
-                {cartCount > 0 && (
-                  <span
-                    style={{
-                      position: "absolute", top: "-6px", right: "-6px",
-                      backgroundColor: "#A16207", color: "#FFFFFF",
-                      borderRadius: "999px", fontSize: "10px", fontWeight: 700,
-                      minWidth: "18px", height: "18px",
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      padding: "0 4px",
-                    }}
-                  >
-                    {cartCount}
-                  </span>
-                )}
-              </Link>
-              <Link
-                href="/"
-                className="hidden sm:inline-flex items-center gap-2 font-semibold lo-btn-outline border"
-                style={{
-                  borderColor: "#1C1917", color: "#1C1917",
-                  fontSize: "13px", padding: "9px 18px", borderRadius: "8px",
-                  textDecoration: "none", letterSpacing: "0.04em",
-                }}
-              >
-                <IconArrowLeft /> Back to Shop
-              </Link>
-              <button
-                className="lg:hidden flex items-center justify-center border cursor-pointer"
-                style={{ borderColor: "#D6D3D1", color: "#1C1917", width: "44px", height: "44px", borderRadius: "8px" }}
-                onClick={() => setMenuOpen((o) => !o)}
-                aria-label={menuOpen ? "Close menu" : "Open menu"}
-              >
-                {menuOpen ? <IconClose /> : <IconMenu />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Nav */}
-        <div
-          className="lo-mobile-menu lg:hidden border-t"
-          style={{
-            maxHeight: menuOpen ? "480px" : "0",
-            opacity: menuOpen ? 1 : 0,
-            borderColor: "#E7E5E4",
-            backgroundColor: "#FFFFFF",
-          }}
-        >
-          <nav className="max-w-7xl mx-auto px-4 py-3 flex flex-col">
-            <Link
-              href="/"
-              onClick={() => setMenuOpen(false)}
-              className="flex items-center gap-2 border-b py-3.5"
-              style={{ fontSize: "14px", fontWeight: 600, color: "#1C1917", borderColor: "#F5F5F4", textDecoration: "none" }}
-            >
-              <IconArrowLeft /> Back to Shop
-            </Link>
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="border-b py-3.5"
-                style={{ fontSize: "14px", fontWeight: 500, color: "#1C1917", borderColor: "#F5F5F4", textDecoration: "none" }}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </header>
 
       {/* ── Breadcrumb ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ paddingTop: "16px" }}>

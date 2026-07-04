@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Footer from "@/components/Footer";
 
 type PolicyPageProps = {
@@ -10,10 +9,7 @@ export default function PolicyPage({ title, children }: PolicyPageProps) {
   return (
     <div style={{ backgroundColor: "#FAFAF9", minHeight: "100vh", color: "#1C1917" }}>
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" style={{ padding: "72px 0 88px" }}>
-        <Link href="/" style={{ color: "#78716C", fontSize: "13px", textDecoration: "none" }}>
-          Back to Home
-        </Link>
-        <div style={{ marginTop: "28px", marginBottom: "32px" }}>
+        <div style={{ marginBottom: "32px" }}>
           <p style={{ fontSize: "10px", fontWeight: 600, color: "#A16207", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "10px" }}>
             Life&apos;s Once
           </p>

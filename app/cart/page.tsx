@@ -45,8 +45,6 @@ const IconBag = () => (
 );
 
 const WHATSAPP_URL = "https://wa.me/919384007074";
-const announcement = "New arrivals live now  ·  Store pickup available  ·  COD available  ·  WhatsApp support available  ·  ";
-
 /* ── Cart Item Row ── */
 function CartRow({ item }: { item: CartItem }) {
   const { removeFromCart, updateQuantity } = useCart();
@@ -231,82 +229,6 @@ export default function CartPage() {
     <div style={{ backgroundColor: "#FAFAF9", minHeight: "100vh", color: "#1C1917" }}>
 
       {/* ── Announcement Bar ── */}
-      <div className="w-full overflow-hidden py-2.5" style={{ backgroundColor: "#1C1917" }}>
-        <div className="lo-marquee-track">
-          {[announcement, announcement, announcement].map((t, i) => (
-            <span key={i} className="inline-block px-6 text-white" style={{ fontSize: "11px", letterSpacing: "0.11em", textTransform: "uppercase" }}>
-              {t}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Header ── */}
-      <header
-        className="sticky top-0 z-50 w-full border-b"
-        style={{ backgroundColor: "#FFFFFF", borderColor: "#E7E5E4" }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between" style={{ height: "72px" }}>
-
-            {/* Logo */}
-            <Link href="/" aria-label="Life's Once – Home" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
-              <div className="relative" style={{ height: "52px", width: "148px" }}>
-                <Image
-                  src="/logo.png"
-                  alt="Life's Once"
-                  fill
-                  sizes="148px"
-                  className="object-contain"
-                  style={{ objectPosition: "left center" }}
-                  priority
-                />
-              </div>
-            </Link>
-
-            {/* Right */}
-            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-              <Link
-                href="/"
-                className="hidden sm:inline-flex items-center gap-2 font-semibold lo-btn-outline border"
-                style={{
-                  borderColor: "#1C1917", color: "#1C1917",
-                  fontSize: "13px", padding: "9px 18px", borderRadius: "8px",
-                  textDecoration: "none", letterSpacing: "0.04em",
-                }}
-              >
-                <IconArrowLeft /> Continue Shopping
-              </Link>
-
-              {/* Cart count pill */}
-              <div
-                style={{
-                  display: "flex", alignItems: "center", gap: "8px",
-                  backgroundColor: "#1C1917", color: "#FFFFFF",
-                  fontSize: "13px", fontWeight: 600,
-                  padding: "9px 18px", borderRadius: "8px", letterSpacing: "0.04em",
-                }}
-              >
-                <IconCart />
-                <span className="hidden sm:inline">Cart</span>
-                {cartCount > 0 && (
-                  <span
-                    style={{
-                      backgroundColor: "#A16207", color: "#FFFFFF",
-                      borderRadius: "999px", fontSize: "10px", fontWeight: 700,
-                      minWidth: "18px", height: "18px",
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      padding: "0 4px",
-                    }}
-                  >
-                    {cartCount}
-                  </span>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
 
       {/* ── Breadcrumb ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ paddingTop: "16px" }}>

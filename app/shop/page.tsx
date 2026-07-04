@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
@@ -28,17 +27,6 @@ export default function ShopPage() {
 
   return (
     <div style={{ backgroundColor: "#FAFAF9", minHeight: "100vh", color: "#1C1917" }}>
-      <header className="border-b" style={{ backgroundColor: "#FFFFFF", borderColor: "#E7E5E4" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between" style={{ height: "72px" }}>
-          <Link href="/" className="lo-serif font-semibold" style={{ color: "#1C1917", fontSize: "24px", textDecoration: "none" }}>
-            Life&apos;s Once
-          </Link>
-          <Link href="/cart" className="lo-btn-primary font-semibold" style={{ backgroundColor: "#1C1917", color: "#FFFFFF", fontSize: "13px", padding: "10px 18px", borderRadius: "8px", textDecoration: "none" }}>
-            Cart
-          </Link>
-        </div>
-      </header>
-
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ padding: "64px 0 80px" }}>
         <div style={{ marginBottom: "32px" }}>
           <p style={{ fontSize: "10px", fontWeight: 600, color: "#A16207", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "10px" }}>
