@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import { products } from "@/data/products";
 import { useCart } from "@/context/CartContext";
@@ -208,6 +208,20 @@ function SizeGuideModal({ onClose }: { onClose: () => void }) {
   const tableStyle = { width: "100%", borderCollapse: "collapse" as const, fontSize: "12px", color: "#57534E" };
   const cellStyle = { padding: "10px 8px", borderBottom: "1px solid #F0EFEE" };
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
   return (
     <div
       role="dialog"
@@ -216,7 +230,7 @@ function SizeGuideModal({ onClose }: { onClose: () => void }) {
       style={{
         position: "fixed",
         inset: 0,
-        zIndex: 100,
+        zIndex: 9999,
         backgroundColor: "rgba(28,25,23,0.58)",
         display: "flex",
         alignItems: "center",

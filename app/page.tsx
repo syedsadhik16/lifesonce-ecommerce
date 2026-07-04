@@ -533,7 +533,7 @@ export default function HomePage() {
               {/* CTA Buttons */}
               <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginBottom: "36px" }}>
                 <a
-                  href="/shop"
+                  href="/collections/new-arrivals"
                   className="lo-btn-primary inline-flex items-center justify-center font-semibold cursor-pointer"
                   style={{
                     backgroundColor: "#1C1917",

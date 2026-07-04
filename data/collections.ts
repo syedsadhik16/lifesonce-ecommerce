@@ -66,7 +66,7 @@ export const collections: Collection[] = [
     seoTitle: "Trousers | Life's Once Chennai",
     seoDescription: "Explore trousers and formal pants from Life's Once Chennai.",
     productCategory: "Trousers",
-    productKeywords: ["trouser", "formal pants"],
+    productKeywords: [],
     productCollectionSlugs: ["trousers"],
   },
   {

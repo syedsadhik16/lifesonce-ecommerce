@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
@@ -10,6 +10,10 @@ const sizeOptions = ["All", "S", "M", "L", "XL", "XXL", "30", "32", "34", "36", 
 const colorOptions = ["All", "Beige", "Black", "Blue", "Brown", "Cream", "Grey", "Navy", "Olive", "White"] as const;
 const priceOptions = ["All", "Under Rs. 999", "Rs. 999 - Rs. 1499", "Rs. 1500 - Rs. 1999", "Above Rs. 1999"] as const;
 const sortOptions = ["Featured", "Newest", "Price: Low to High", "Price: High to Low", "Name: A to Z"] as const;
+
+function toSlug(value: string) {
+  return value.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
 
 function matchesCategory(product: (typeof products)[number], category: (typeof categoryOptions)[number]) {
   if (category === "All") return true;
@@ -67,6 +71,14 @@ export default function ShopPage() {
   const [color, setColor] = useState<(typeof colorOptions)[number]>("All");
   const [price, setPrice] = useState<(typeof priceOptions)[number]>("All");
   const [sort, setSort] = useState<(typeof sortOptions)[number]>("Featured");
+
+  useEffect(() => {
+    const categoryParam = new URLSearchParams(window.location.search).get("category");
+    if (!categoryParam) return;
+
+    const nextCategory = categoryOptions.find((option) => toSlug(option) === toSlug(categoryParam));
+    if (nextCategory) setCategory(nextCategory);
+  }, []);
 
   const visibleProducts = useMemo(() => {
     const filtered = products.filter((product) => {
