@@ -98,14 +98,17 @@ function getCare(category: string): string {
 }
 
 /* ─────────────────────────── Product Image ─────────────────────────── */
-function ProductImage({ src, alt, category }: { src: string; alt: string; category: string }) {
+function ProductImage({ src, alt, category, onOpenZoom }: { src: string; alt: string; category: string; onOpenZoom: () => void }) {
   const [hasError, setHasError] = useState(false);
   const initial = category.charAt(0).toUpperCase();
 
   return (
-    <div
+    <button
+      type="button"
+      onClick={onOpenZoom}
+      aria-label={`Open larger view of ${alt}`}
       className="lo-placeholder"
-      style={{ position: "relative", width: "100%", aspectRatio: "3/4", borderRadius: "18px", overflow: "hidden", border: "1px solid #E7E5E4", boxShadow: "0 18px 50px rgba(28,25,23,0.10)" }}
+      style={{ position: "relative", width: "100%", aspectRatio: "3/4", borderRadius: "18px", overflow: "hidden", border: "1px solid #E7E5E4", boxShadow: "0 18px 50px rgba(28,25,23,0.10)", padding: 0, cursor: "zoom-in", background: "none", display: "block" }}
     >
       {/* Placeholder always sits behind */}
       <div
@@ -136,7 +139,26 @@ function ProductImage({ src, alt, category }: { src: string; alt: string; catego
           priority
         />
       )}
-    </div>
+      <span
+        style={{
+          position: "absolute",
+          right: "14px",
+          bottom: "14px",
+          zIndex: 2,
+          backgroundColor: "rgba(28,25,23,0.86)",
+          color: "#FFFFFF",
+          fontSize: "11px",
+          fontWeight: 700,
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          padding: "8px 10px",
+          borderRadius: "999px",
+          pointerEvents: "none",
+        }}
+      >
+        Tap to zoom
+      </span>
+    </button>
   );
 }
 
@@ -201,6 +223,81 @@ function DetailSection({ title, children }: { title: string; children: React.Rea
 }
 
 /* ─────────────────────────── Main Component ─────────────────────────── */
+function ImageZoomModal({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${alt} larger view`}
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 10000,
+        backgroundColor: "rgba(28,25,23,0.86)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "20px",
+      }}
+    >
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close image zoom"
+        style={{
+          position: "absolute",
+          top: "18px",
+          right: "18px",
+          zIndex: 2,
+          border: "1px solid rgba(255,255,255,0.32)",
+          backgroundColor: "rgba(255,255,255,0.12)",
+          color: "#FFFFFF",
+          width: "44px",
+          height: "44px",
+          borderRadius: "999px",
+          cursor: "pointer",
+          fontSize: "22px",
+          lineHeight: 1,
+        }}
+      >
+        x
+      </button>
+      <div
+        style={{
+          position: "relative",
+          width: "min(92vw, 820px)",
+          height: "min(86vh, 980px)",
+        }}
+        onClick={(event) => event.stopPropagation()}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="92vw"
+          className="object-contain"
+          priority
+        />
+      </div>
+    </div>
+  );
+}
+
 function SizeGuideModal({ onClose }: { onClose: () => void }) {
   const shirtSizes = ["S", "M", "L", "XL", "XXL", "XXXL"];
   const pantSizes = ["28", "30", "32", "34", "36", "38", "40", "42", "44"];
@@ -338,6 +435,7 @@ export default function ProductDetailClient({ product }: { product: Product | nu
   const [selectedColor, setSelectedColor] = useState<string>("");
   const [cartMsg,       setCartMsg]       = useState<"idle" | "no-size" | "no-color" | "added">("idle");
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
+  const [imageZoomOpen, setImageZoomOpen] = useState(false);
   const { addToCart }                     = useCart();
 
   if (!product) return <NotFound />;
@@ -383,7 +481,7 @@ export default function ProductDetailClient({ product }: { product: Product | nu
 
           {/* ── Left: Image ── */}
           <div>
-            <ProductImage src={product.image} alt={product.name} category={product.category} />
+            <ProductImage src={product.image} alt={product.name} category={product.category} onOpenZoom={() => setImageZoomOpen(true)} />
 
             {/* Trust strips below image on desktop */}
             <div
@@ -766,6 +864,7 @@ export default function ProductDetailClient({ product }: { product: Product | nu
 
       {/* ── Footer strip ── */}
       <Footer />
+      {imageZoomOpen && <ImageZoomModal src={product.image} alt={product.name} onClose={() => setImageZoomOpen(false)} />}
       {sizeGuideOpen && <SizeGuideModal onClose={() => setSizeGuideOpen(false)} />}
     </div>
   );
