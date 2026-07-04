@@ -45,6 +45,79 @@ const IconBag = () => (
 );
 
 const WHATSAPP_URL = "https://wa.me/919384007074";
+const RAZORPAY_KEY_ID = "rzp_test_SXLFLibCfQ0Xui";
+
+type RazorpayPaymentResponse = {
+  razorpay_payment_id: string;
+  razorpay_order_id?: string;
+  razorpay_signature?: string;
+};
+
+type RazorpayFailureResponse = {
+  error?: {
+    description?: string;
+    reason?: string;
+  };
+};
+
+type RazorpayCheckoutOptions = {
+  key: string;
+  amount: number;
+  currency: "INR";
+  name: string;
+  description: string;
+  prefill: {
+    contact: string;
+  };
+  theme: {
+    color: string;
+  };
+  handler: (response: RazorpayPaymentResponse) => void;
+  modal: {
+    ondismiss: () => void;
+  };
+};
+
+declare global {
+  interface Window {
+    Razorpay?: new (options: RazorpayCheckoutOptions) => {
+      open: () => void;
+      on: (event: "payment.failed", callback: (response: RazorpayFailureResponse) => void) => void;
+    };
+  }
+}
+
+function loadRazorpayScript() {
+  return new Promise<boolean>((resolve) => {
+    if (window.Razorpay) {
+      resolve(true);
+      return;
+    }
+
+    let settled = false;
+    const finish = (loaded: boolean) => {
+      if (settled) return;
+      settled = true;
+      resolve(loaded);
+    };
+
+    const existingScript = document.getElementById("razorpay-checkout-script");
+    if (existingScript) {
+      existingScript.addEventListener("load", () => finish(Boolean(window.Razorpay)), { once: true });
+      existingScript.addEventListener("error", () => finish(false), { once: true });
+      window.setTimeout(() => finish(Boolean(window.Razorpay)), 3000);
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.id = "razorpay-checkout-script";
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    script.onload = () => finish(Boolean(window.Razorpay));
+    script.onerror = () => finish(false);
+    document.body.appendChild(script);
+  });
+}
 /* ── Cart Item Row ── */
 function CartRow({ item }: { item: CartItem }) {
   const { removeFromCart, updateQuantity } = useCart();
@@ -218,6 +291,11 @@ function EmptyCart() {
 /* ── Page ── */
 export default function CartPage() {
   const { items, cartTotal, cartCount, clearCart } = useCart();
+  const [isPayingOnline, setIsPayingOnline] = useState(false);
+  const [paymentMessage, setPaymentMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
 
   const buildWaMessage = () => {
     const lines = items.map(
@@ -227,6 +305,72 @@ export default function CartPage() {
     return encodeURIComponent(
       `Hi Life's Once, I want to place this order:\n\n${lines.join("\n\n")}\n\nTotal: ₹${cartTotal.toLocaleString("en-IN")}\n\nPlease confirm availability.`
     );
+  };
+
+  const handleRazorpayCheckout = async () => {
+    if (items.length === 0 || cartTotal <= 0) return;
+
+    setIsPayingOnline(true);
+    setPaymentMessage(null);
+
+    const loaded = await loadRazorpayScript();
+    if (!loaded || !window.Razorpay) {
+      setIsPayingOnline(false);
+      setPaymentMessage({
+        type: "error",
+        text: "Razorpay could not load. You can try again or place order through WhatsApp.",
+      });
+      return;
+    }
+
+    let completed = false;
+
+    // This frontend-only Razorpay test checkout is for demo.
+    // For production, create Razorpay order from server/API route using RAZORPAY_KEY_SECRET and verify payment signature on server.
+    const razorpay = new window.Razorpay({
+      key: RAZORPAY_KEY_ID,
+      amount: Math.round(cartTotal * 100),
+      currency: "INR",
+      name: "Life's Once",
+      description: "Clothing order payment",
+      prefill: {
+        contact: "9384007074",
+      },
+      theme: {
+        color: "#1C1917",
+      },
+      handler: () => {
+        completed = true;
+        setIsPayingOnline(false);
+        setPaymentMessage({
+          type: "success",
+          text: "Payment successful. Please send order details on WhatsApp for confirmation.",
+        });
+      },
+      modal: {
+        ondismiss: () => {
+          if (!completed) {
+            setIsPayingOnline(false);
+            setPaymentMessage({
+              type: "error",
+              text: "Payment was not completed. You can try again or place order through WhatsApp.",
+            });
+          }
+        },
+      },
+    });
+
+    razorpay.on("payment.failed", (response) => {
+      completed = true;
+      setIsPayingOnline(false);
+      setPaymentMessage({
+        type: "error",
+        text: response.error?.description || "Payment was not completed. You can try again or place order through WhatsApp.",
+      });
+    });
+
+    razorpay.open();
+    setIsPayingOnline(false);
   };
 
   return (
@@ -368,6 +512,58 @@ export default function CartPage() {
                   ₹{cartTotal.toLocaleString("en-IN")}
                 </span>
               </div>
+
+              {/* Razorpay test checkout */}
+              <button
+                type="button"
+                onClick={handleRazorpayCheckout}
+                disabled={items.length === 0 || isPayingOnline}
+                style={{
+                  width: "100%",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  padding: "16px",
+                  borderRadius: "10px",
+                  fontSize: "13px",
+                  fontWeight: 700,
+                  letterSpacing: "0.06em",
+                  backgroundColor: items.length === 0 || isPayingOnline ? "#A8A29E" : "#1C1917",
+                  color: "#FFFFFF",
+                  border: "none",
+                  cursor: items.length === 0 || isPayingOnline ? "not-allowed" : "pointer",
+                  marginBottom: "12px",
+                }}
+              >
+                {isPayingOnline ? "Opening Razorpay..." : "Pay Online with Razorpay"}
+              </button>
+
+              {paymentMessage && (
+                <div
+                  style={{
+                    border: `1px solid ${paymentMessage.type === "success" ? "#86EFAC" : "#FECACA"}`,
+                    backgroundColor: paymentMessage.type === "success" ? "#F0FDF4" : "#FEF2F2",
+                    color: paymentMessage.type === "success" ? "#166534" : "#991B1B",
+                    borderRadius: "10px",
+                    padding: "12px",
+                    marginBottom: "12px",
+                    fontSize: "12px",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  <p style={{ marginBottom: paymentMessage.type === "success" ? "10px" : 0 }}>
+                    {paymentMessage.text}
+                  </p>
+                  {paymentMessage.type === "success" && (
+                    <a
+                      href={`${WHATSAPP_URL}?text=${buildWaMessage()}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "#166534", fontWeight: 700, textDecoration: "underline" }}
+                    >
+                      Send order details on WhatsApp
+                    </a>
+                  )}
+                </div>
+              )}
 
               {/* WhatsApp Checkout */}
               <a
