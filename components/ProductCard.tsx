@@ -50,7 +50,7 @@ export default function ProductCard({ product }: { product: Product }) {
   const extraSizes = product.sizes.length - 5;
 
   return (
-    <article className="lo-card bg-white rounded-xl overflow-hidden border flex flex-col" style={{ borderColor: "#E7E5E4" }}>
+    <article className="lo-card bg-white rounded-xl overflow-hidden border flex flex-col" style={{ borderColor: "#E7E5E4", boxShadow: "0 10px 30px rgba(28,25,23,0.06)" }}>
       <div className="lo-product-image-wrap" style={{ aspectRatio: "3/4" }}>
         <ProductImage src={product.image} alt={product.name} category={product.category} />
 
@@ -81,6 +81,14 @@ export default function ProductCard({ product }: { product: Product }) {
         <h3 className="lo-serif font-semibold leading-snug mb-3" style={{ fontSize: "17px", color: "#1C1917" }}>
           {product.name}
         </h3>
+
+        <div className="flex flex-wrap" style={{ gap: "6px", marginBottom: "12px" }}>
+          {["Premium fit", "Store pickup"].map((label) => (
+            <span key={label} style={{ backgroundColor: "#F5F5F4", color: "#78716C", fontSize: "10px", fontWeight: 600, padding: "4px 7px", borderRadius: "999px" }}>
+              {label}
+            </span>
+          ))}
+        </div>
 
         <div className="flex items-baseline gap-2 mb-3">
           <span className="font-bold" style={{ fontSize: "16px", color: "#1C1917" }}>

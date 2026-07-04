@@ -105,7 +105,7 @@ export default function Footer() {
               <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
                 <span style={{ color: "#A16207", marginTop: "2px", flexShrink: 0 }}><IconMapPin /></span>
                 <p style={{ fontSize: "13px", color: "#78716C", lineHeight: "1.65" }}>
-                  25/A, Karnan St, Rangarajapuram,<br />Kodambakkam, Chennai - 600024
+                  Life&apos;s Once<br />25/A, Karnan St, Rangarajapuram,<br />Kodambakkam, Chennai, Greater Chennai<br />Tamil Nadu 600024
                 </p>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>

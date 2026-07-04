@@ -15,8 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Life's Once | Premium Men's Fashion — Chennai",
-  description: "Premium men's fashion from Kodambakkam, Chennai. Shop denim, shirts, polos, pants and winter wear.",
+  title: "Life's Once | Premium Men's Fashion Store Chennai",
+  description: "Shop premium shirts, polos, pants, drop shoulder t-shirts and men's fashion from Life's Once, Kodambakkam Chennai. Order via WhatsApp or visit store.",
+  openGraph: {
+    title: "Life's Once | Premium Men's Fashion Store Chennai",
+    description: "Shop premium shirts, polos, pants, drop shoulder t-shirts and men's fashion from Life's Once, Kodambakkam Chennai. Order via WhatsApp or visit store.",
+  },
 };
 
 export default function RootLayout({
@@ -27,6 +31,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
@@ -38,3 +43,4 @@ export default function RootLayout({
     </html>
   );
 }
+

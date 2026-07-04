@@ -60,7 +60,7 @@ export default async function CollectionPage({ params }: Props) {
               </p>
               <div className="flex flex-wrap" style={{ gap: "12px" }}>
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="lo-btn-primary inline-flex font-semibold" style={{ backgroundColor: "#1C1917", color: "#FFFFFF", fontSize: "13px", padding: "14px 28px", borderRadius: "8px", textDecoration: "none" }}>
-                  WhatsApp Us
+                  WhatsApp Enquiry
                 </a>
                 <Link href="/shop" className="lo-btn-outline inline-flex font-semibold border" style={{ borderColor: "#1C1917", color: "#1C1917", fontSize: "13px", padding: "14px 28px", borderRadius: "8px", textDecoration: "none" }}>
                   Back to Shop
@@ -69,7 +69,7 @@ export default async function CollectionPage({ params }: Props) {
             </div>
 
             <div className="lo-placeholder" style={{ position: "relative", aspectRatio: "3/4", borderRadius: "16px", overflow: "hidden", border: "1px solid #E7E5E4" }}>
-              <Image src={collection.image} alt={collection.title} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" priority />
+              <Image src={collection.image} alt={collection.title} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" priority unoptimized />
             </div>
           </div>
         </section>
@@ -77,7 +77,7 @@ export default async function CollectionPage({ params }: Props) {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ padding: "72px 0 88px" }}>
           <div style={{ marginBottom: "32px" }}>
             <h2 className="lo-serif font-semibold" style={{ fontSize: "clamp(28px, 4vw, 42px)", color: "#1C1917", marginBottom: "10px" }}>
-              Related Products
+              {relatedProducts.length > 0 ? "Available Products" : "Coming Soon"}
             </h2>
             <div style={{ width: "40px", height: "1px", backgroundColor: "#A16207" }} />
           </div>
@@ -91,13 +91,13 @@ export default async function CollectionPage({ params }: Props) {
           ) : (
             <div style={{ backgroundColor: "#FFFFFF", border: "1px solid #E7E5E4", borderRadius: "16px", padding: "48px 24px", textAlign: "center" }}>
               <h3 className="lo-serif font-semibold" style={{ fontSize: "28px", color: "#1C1917", marginBottom: "10px" }}>
-                Products coming soon.
+                This collection is coming soon.
               </h3>
               <p style={{ fontSize: "14px", color: "#78716C", marginBottom: "24px" }}>
-                WhatsApp us for latest stock.
+                Message us to check availability.
               </p>
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="lo-btn-primary inline-flex font-semibold" style={{ backgroundColor: "#1C1917", color: "#FFFFFF", fontSize: "13px", padding: "13px 24px", borderRadius: "8px", textDecoration: "none" }}>
-                WhatsApp Us
+                WhatsApp Enquiry
               </a>
             </div>
           )}

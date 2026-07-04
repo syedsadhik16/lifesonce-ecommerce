@@ -105,7 +105,7 @@ function ProductImage({ src, alt, category }: { src: string; alt: string; catego
   return (
     <div
       className="lo-placeholder"
-      style={{ position: "relative", width: "100%", aspectRatio: "3/4", borderRadius: "16px", overflow: "hidden" }}
+      style={{ position: "relative", width: "100%", aspectRatio: "3/4", borderRadius: "18px", overflow: "hidden", border: "1px solid #E7E5E4", boxShadow: "0 18px 50px rgba(28,25,23,0.10)" }}
     >
       {/* Placeholder always sits behind */}
       <div
@@ -161,7 +161,7 @@ function NotFound() {
         The product you&apos;re looking for doesn&apos;t exist or may have been removed.
       </p>
       <Link
-        href="/"
+        href="/shop"
         style={{
           display: "inline-flex", alignItems: "center", gap: "8px",
           backgroundColor: "#1C1917", color: "#FFFFFF",
@@ -455,6 +455,15 @@ export default function ProductDetailClient({ product }: { product: Product | nu
               {product.description}
             </p>
 
+            <div className="grid grid-cols-2" style={{ gap: "10px", marginBottom: "24px" }}>
+              {["Premium fit", "Store pickup available", "WhatsApp order support", "Easy exchange"].map((item) => (
+                <div key={item} style={{ display: "flex", alignItems: "center", gap: "8px", backgroundColor: "#FFFFFF", border: "1px solid #E7E5E4", borderRadius: "10px", padding: "11px 12px" }}>
+                  <span style={{ color: "#A16207", display: "flex", flexShrink: 0 }}><IconCheck /></span>
+                  <span style={{ fontSize: "12px", color: "#57534E", fontWeight: 600 }}>{item}</span>
+                </div>
+              ))}
+            </div>
+
             {/* ── Size Selector ── */}
             <div style={{ marginBottom: "20px" }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "10px" }}>
@@ -469,6 +478,9 @@ export default function ProductDetailClient({ product }: { product: Product | nu
                   Size Guide
                 </button>
               </div>
+              <a href={SIZE_HELP_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", color: "#15803D", fontSize: "12px", fontWeight: 600, marginBottom: "10px", textDecoration: "none" }}>
+                Need size help? WhatsApp us
+              </a>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                 {product.sizes.map((s) => {
                   const active = selectedSize === s;
@@ -611,7 +623,7 @@ export default function ProductDetailClient({ product }: { product: Product | nu
 
               {/* Back to Shop */}
               <Link
-                href="/"
+                href="/shop"
                 style={{
                   display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
                   padding: "14px",

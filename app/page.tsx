@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import Footer from "@/components/Footer";
+import SharedProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
 
 /* ─────────────────────────── SVG Icons ─────────────────────────── */
@@ -88,11 +89,11 @@ const NAV_LINKS = [
 
 const CATEGORY_CARDS = [
   {
-    title: "Polo T-Shirts with Jeans",
+    title: "Polo T-Shirts",
     slug: "polo-tshirts-jeans",
     image: "/categories/polo-tshirts-jeans/1.png",
     description: "Classic polo tees paired with sharp denim for an effortless, smart-casual look.",
-    itemCount: "5+ styles",
+    itemCount: "Coming soon",
     href: "/collections/polo-tshirts-jeans",
   },
   {
@@ -100,23 +101,23 @@ const CATEGORY_CARDS = [
     slug: "formal-pants",
     image: "/categories/formal-pants/1.png",
     description: "Tailored formal trousers crafted for clean lines, comfort and all-day confidence.",
-    itemCount: "3+ styles",
+    itemCount: "Coming soon",
     href: "/collections/formal-pants",
   },
   {
-    title: "Shirt with Jeans",
+    title: "Shirts + Jeans",
     slug: "shirt-jeans",
     image: "/categories/shirt-jeans/1.png",
     description: "Premium shirts in cotton and blended fabrics, perfectly matched with classic denim.",
-    itemCount: "4+ styles",
+    itemCount: "10 styles",
     href: "/collections/shirt-jeans",
   },
   {
-    title: "Drop Shoulder T-Shirt with Jeans",
+    title: "Drop Shoulder",
     slug: "drop-shoulder-tshirts-jeans",
     image: "/categories/drop-shoulder-tshirts-jeans/1.png",
     description: "Relaxed drop-shoulder cuts with wide-leg denim for a bold streetwear edge.",
-    itemCount: "3+ styles",
+    itemCount: "Coming soon",
     href: "/collections/drop-shoulder-tshirts-jeans",
   },
 ];
@@ -286,6 +287,7 @@ function CategoryCard({ cat }: { cat: (typeof CATEGORY_CARDS)[number] }) {
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             className="object-cover"
+            unoptimized
             onError={() => setImgError(true)}
           />
         ) : (
@@ -525,13 +527,13 @@ export default function HomePage() {
               <p
                 style={{ fontSize: "15px", lineHeight: "1.85", color: "#78716C", maxWidth: "440px", marginBottom: "36px" }}
               >
-                Premium denim, shirts, polos, pants and winter wear for everyday style.
+                Sharp shirts, clean fits, and smart casual essentials selected for everyday confidence.
               </p>
 
               {/* CTA Buttons */}
               <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginBottom: "36px" }}>
                 <a
-                  href="#new-arrivals"
+                  href="/shop"
                   className="lo-btn-primary inline-flex items-center justify-center font-semibold cursor-pointer"
                   style={{
                     backgroundColor: "#1C1917",
@@ -547,7 +549,7 @@ export default function HomePage() {
                   Shop New Arrivals
                 </a>
                 <a
-                  href={MAPS_URL}
+                  href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="lo-btn-outline inline-flex items-center justify-center gap-2 font-semibold border cursor-pointer"
@@ -562,13 +564,13 @@ export default function HomePage() {
                     minWidth: "160px",
                   }}
                 >
-                  <IconMapPin /> Visit Store
+                  <IconWhatsApp /> Chat on WhatsApp
                 </a>
               </div>
 
               {/* Trust Points */}
               <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
-                {["Store pickup available", "COD available", "WhatsApp support"].map((t) => (
+                {["Store Pickup", "WhatsApp Ordering", "COD Available", "Easy Exchange"].map((t) => (
                   <div key={t} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
                     <span style={{ color: "#92400E", display: "flex" }}>
                       <IconCheck />
@@ -649,7 +651,7 @@ export default function HomePage() {
           {/* Product Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5" style={{ gap: "20px" }}>
             {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <SharedProductCard key={product.id} product={product} />
             ))}
           </div>
 
@@ -695,7 +697,7 @@ export default function HomePage() {
                   {
                     icon: <IconMapPin />,
                     label: "Address",
-                    content: <>25/A, Karnan St, Rangarajapuram,<br />Kodambakkam, Chennai,<br />Tamil Nadu 600024</>
+                    content: <>Life&apos;s Once<br />25/A, Karnan St, Rangarajapuram,<br />Kodambakkam, Chennai, Greater Chennai,<br />Tamil Nadu 600024</>
                   },
                   {
                     icon: <IconPhone />,
@@ -705,7 +707,7 @@ export default function HomePage() {
                   {
                     icon: <IconClock />,
                     label: "Store Hours",
-                    content: <>9:30 AM – 11:00 PM, All Days</>
+                    content: <>9:30 AM - 11:00 PM, All Days</>
                   },
                 ].map(({ icon, label, content }) => (
                   <div key={label} style={{ display: "flex", alignItems: "flex-start", gap: "16px" }}>

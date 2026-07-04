@@ -39,9 +39,12 @@ export default function ShopPage() {
           <p style={{ fontSize: "14px", color: "#78716C", lineHeight: "1.8", maxWidth: "520px" }}>
             Browse the full Life&apos;s Once collection and open any product for size, color, cart, and WhatsApp ordering options.
           </p>
+          <p style={{ fontSize: "12px", color: "#A16207", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginTop: "18px" }}>
+            {visibleProducts.length} {visibleProducts.length === 1 ? "product" : "products"} shown
+          </p>
         </div>
 
-        <div className="flex flex-wrap" style={{ gap: "10px", marginBottom: "32px" }} aria-label="Product filters">
+        <div className="flex flex-wrap" style={{ gap: "10px", marginBottom: "32px", padding: "10px", backgroundColor: "#FFFFFF", border: "1px solid #E7E5E4", borderRadius: "14px" }} aria-label="Product filters">
           {filters.map((filter) => {
             const active = activeFilter === filter;
             return (
@@ -54,11 +57,12 @@ export default function ShopPage() {
                   borderColor: active ? "#1C1917" : "#D6D3D1",
                   backgroundColor: active ? "#1C1917" : "#FFFFFF",
                   color: active ? "#FFFFFF" : "#44403C",
-                  borderRadius: "999px",
+                  borderRadius: "8px",
                   cursor: "pointer",
                   fontSize: "12px",
                   fontWeight: 600,
-                  padding: "9px 16px",
+                  padding: "10px 16px",
+                  boxShadow: active ? "0 8px 20px rgba(28,25,23,0.14)" : "none",
                 }}
               >
                 {filter}
@@ -76,10 +80,10 @@ export default function ShopPage() {
         ) : (
           <div style={{ backgroundColor: "#FFFFFF", border: "1px solid #E7E5E4", borderRadius: "16px", padding: "48px 24px", textAlign: "center" }}>
             <h2 className="lo-serif font-semibold" style={{ fontSize: "28px", color: "#1C1917", marginBottom: "10px" }}>
-              Products coming soon.
+              This collection is coming soon.
             </h2>
             <p style={{ fontSize: "14px", color: "#78716C", marginBottom: "24px" }}>
-              WhatsApp us for latest stock.
+              Message us to check availability.
             </p>
             <a href="https://wa.me/919384007074" target="_blank" rel="noopener noreferrer" className="lo-btn-primary inline-flex font-semibold" style={{ backgroundColor: "#1C1917", color: "#FFFFFF", fontSize: "13px", padding: "13px 24px", borderRadius: "8px", textDecoration: "none" }}>
               WhatsApp Us

@@ -186,6 +186,10 @@ function EmptyCart() {
         minHeight: "55vh",
         display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
         padding: "64px 24px", textAlign: "center",
+        backgroundColor: "#FFFFFF",
+        border: "1px solid #E7E5E4",
+        borderRadius: "18px",
+        boxShadow: "0 14px 44px rgba(28,25,23,0.07)",
       }}
     >
       <div style={{ color: "#D6D3D1", marginBottom: "28px" }}><IconBag /></div>
@@ -194,10 +198,10 @@ function EmptyCart() {
       </h2>
       <div style={{ width: "40px", height: "1px", backgroundColor: "#A16207", margin: "0 auto 16px" }} />
       <p style={{ fontSize: "14px", color: "#78716C", maxWidth: "320px", lineHeight: "1.75", marginBottom: "36px" }}>
-        You haven&apos;t added anything yet. Browse our premium collection and find your perfect style.
+        You haven&apos;t added anything yet. Browse the latest Life&apos;s Once collection and add your preferred size and color.
       </p>
       <Link
-        href="/#new-arrivals"
+        href="/shop"
         style={{
           display: "inline-flex", alignItems: "center", gap: "8px",
           backgroundColor: "#1C1917", color: "#FFFFFF",
@@ -205,7 +209,7 @@ function EmptyCart() {
           padding: "14px 32px", borderRadius: "8px", textDecoration: "none",
         }}
       >
-        Shop New Arrivals
+        Continue Shopping
       </Link>
     </div>
   );
@@ -284,7 +288,7 @@ export default function CartPage() {
                 style={{ marginTop: "16px", gap: "12px" }}
               >
                 <Link
-                  href="/#new-arrivals"
+                  href="/shop"
                   style={{
                     display: "inline-flex", alignItems: "center", gap: "8px",
                     fontSize: "13px", fontWeight: 600, color: "#78716C",
@@ -391,7 +395,7 @@ export default function CartPage() {
 
               {/* Continue Shopping */}
               <Link
-                href="/#new-arrivals"
+                href="/shop"
                 style={{
                   display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
                   padding: "14px",
@@ -411,7 +415,7 @@ export default function CartPage() {
               </Link>
 
               <p style={{ fontSize: "11px", color: "#A8A29E", textAlign: "center", marginTop: "16px", lineHeight: "1.6" }}>
-                Order via WhatsApp &middot; COD available &middot; Store pickup
+                Final availability and delivery will be confirmed on WhatsApp.
               </p>
             </div>
           </div>

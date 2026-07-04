@@ -65,9 +65,9 @@ export default function Header() {
               </div>
             </Link>
 
-            <nav className="hidden lg:flex items-center" style={{ gap: "24px" }} aria-label="Main navigation">
+            <nav className="hidden lg:flex items-center" style={{ gap: "18px" }} aria-label="Main navigation">
               {navLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="lo-nav-link" style={{ fontSize: "13px", fontWeight: 500, color: "#1C1917", letterSpacing: "0.04em", textDecoration: "none" }}>
+                <Link key={link.href} href={link.href} className="lo-nav-link" style={{ fontSize: "12px", fontWeight: 600, color: "#1C1917", letterSpacing: "0.04em", textDecoration: "none", whiteSpace: "nowrap" }}>
                   {link.label}
                 </Link>
               ))}
