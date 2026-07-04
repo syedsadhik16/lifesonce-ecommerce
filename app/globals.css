@@ -1,26 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FAFAF9;
+  --foreground: #1C1917;
+  --lo-accent:        #A16207;
+  --lo-accent-dark:   #92400E;
+  --lo-border:        #D6D3D1;
+  --lo-border-light:  #E7E5E4;
+  --lo-muted:         #F5F5F4;
+  --lo-secondary:     #78716C;
+  --lo-surface:       #FFFFFF;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Montserrat', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Typography ── */
+.lo-serif { font-family: 'Cormorant', serif; }
+
+/* ── Announcement Bar ── */
+@keyframes lo-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.lo-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: lo-marquee 30s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lo-marquee-track { animation: none; }
+}
+
+/* ── Card Hover Lift ── */
+.lo-card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  will-change: transform;
+}
+.lo-card:hover {
+  box-shadow: 0 12px 40px rgba(28, 25, 23, 0.12);
+  transform: translateY(-4px);
+}
+
+/* ── Category Cards ── */
+.lo-cat-card {
+  position: relative;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  overflow: hidden;
+}
+.lo-cat-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--lo-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.lo-cat-card:hover::after { transform: scaleX(1); }
+.lo-cat-card:hover {
+  border-color: #1C1917;
+  box-shadow: 0 8px 24px rgba(28, 25, 23, 0.10);
+  transform: translateY(-3px);
+}
+
+/* ── Buttons ── */
+.lo-btn-primary {
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+.lo-btn-primary:hover {
+  background-color: #292524;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(28, 25, 23, 0.25);
+}
+.lo-btn-primary:active { transform: translateY(0); }
+
+.lo-btn-outline {
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+.lo-btn-outline:hover {
+  background-color: #1C1917;
+  color: #FAFAF9 !important;
+  transform: translateY(-1px);
+}
+.lo-btn-outline:active { transform: translateY(0); }
+
+/* ── Nav Link ── */
+.lo-nav-link {
+  position: relative;
+  transition: color 0.2s ease;
+}
+.lo-nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 0; height: 1px;
+  background-color: #1C1917;
+  transition: width 0.25s ease;
+}
+.lo-nav-link:hover::after { width: 100%; }
+
+.lo-footer-link {
+  transition: color 0.2s ease;
+}
+.lo-footer-link:hover {
+  color: #D6D3D1 !important;
+}
+
+/* ── Size Pills ── */
+.lo-size-pill {
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.lo-size-pill:hover {
+  background-color: #1C1917;
+  color: #FAFAF9;
+  border-color: #1C1917;
+}
+
+/* ── Placeholder ── */
+.lo-placeholder {
+  background: linear-gradient(145deg, #F5F2EE 0%, #EDE8E3 40%, #F0EDE8 70%, #E8E3DC 100%);
+}
+
+/* ── Mobile Menu ── */
+.lo-mobile-menu {
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+  overflow: hidden;
+}
+
+/* ── Section Divider ── */
+.lo-divider {
+  width: 40px;
+  height: 1px;
+  background-color: var(--lo-accent);
+  margin: 0 auto;
+}
+
+/* ── Hero Visual Card ── */
+.lo-hero-visual {
+  position: relative;
+  border-radius: 20px;
+  overflow: visible;
+}
+
+/* ── Product Image Area ── */
+.lo-product-image-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+  background-color: #F5F2EE; /* prevents white flash while image loads */
+}
+
+/* ── Why Card ── */
+.lo-why-card {
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.lo-why-card:hover {
+  box-shadow: 0 8px 28px rgba(28, 25, 23, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ── View Product btn specific hover fix ── */
+.lo-view-btn {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.lo-view-btn:hover {
+  background-color: #1C1917;
+  color: #FAFAF9;
+  border-color: #1C1917;
+}
+
+/* ── Image Category Cards ── */
+.lo-img-cat-card {
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.35s ease, transform 0.3s ease;
+  cursor: pointer;
+  scroll-margin-top: 88px;
+}
+.lo-img-cat-card:hover {
+  box-shadow: 0 16px 48px rgba(28, 25, 23, 0.16);
+  transform: translateY(-4px);
+}
+.lo-img-cat-img {
+  overflow: hidden;
+}
+.lo-img-cat-img img {
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.lo-img-cat-card:hover .lo-img-cat-img img {
+  transform: scale(1.08);
 }
