@@ -8,12 +8,14 @@ import { useCart } from "@/context/CartContext";
 const announcement = "New arrivals live now  ·  Store pickup available  ·  COD available  ·  WhatsApp support available  ·  ";
 
 const navLinks = [
-  { label: "New Arrivals", href: "/#new-arrivals" },
+  { label: "Home", href: "/" },
+  { label: "New Arrivals", href: "/collections/new-arrivals" },
   { label: "All Products", href: "/shop" },
-  { label: "Polo T-Shirts", href: "/collections/polo-tshirts-jeans" },
-  { label: "Formal Pants", href: "/collections/formal-pants" },
-  { label: "Shirts + Jeans", href: "/collections/shirt-jeans" },
-  { label: "Drop Shoulder", href: "/collections/drop-shoulder-tshirts-jeans" },
+  { label: "Shirts", href: "/collections/shirts" },
+  { label: "Polo T-Shirts", href: "/collections/polo-tshirts" },
+  { label: "Trousers", href: "/collections/trousers" },
+  { label: "Our Store", href: "/our-store" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -65,9 +67,9 @@ export default function Header() {
               </div>
             </Link>
 
-            <nav className="hidden lg:flex items-center" style={{ gap: "18px" }} aria-label="Main navigation">
+            <nav className="hidden xl:flex items-center" style={{ gap: "14px" }} aria-label="Main navigation">
               {navLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="lo-nav-link" style={{ fontSize: "12px", fontWeight: 600, color: "#1C1917", letterSpacing: "0.04em", textDecoration: "none", whiteSpace: "nowrap" }}>
+                <Link key={link.href} href={link.href} className="lo-nav-link" style={{ fontSize: "11px", fontWeight: 600, color: "#1C1917", letterSpacing: "0.03em", textDecoration: "none", whiteSpace: "nowrap" }}>
                   {link.label}
                 </Link>
               ))}
@@ -117,7 +119,7 @@ export default function Header() {
 
               <button
                 type="button"
-                className="lg:hidden flex items-center justify-center border cursor-pointer"
+                className="xl:hidden flex items-center justify-center border cursor-pointer"
                 style={{ borderColor: "#D6D3D1", color: "#1C1917", width: "44px", height: "44px", borderRadius: "8px", backgroundColor: "#FFFFFF" }}
                 onClick={() => setMenuOpen((open) => !open)}
                 aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -130,7 +132,7 @@ export default function Header() {
         </div>
 
         <div
-          className="lo-mobile-menu lg:hidden border-t"
+          className="lo-mobile-menu xl:hidden border-t"
           style={{
             maxHeight: menuOpen ? "520px" : "0",
             opacity: menuOpen ? 1 : 0,

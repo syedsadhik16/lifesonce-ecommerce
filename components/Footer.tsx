@@ -4,19 +4,23 @@ import Link from "next/link";
 const WHATSAPP_URL = "https://wa.me/919384007074";
 
 const shopLinks = [
-  { label: "New Arrivals", href: "/#new-arrivals" },
+  { label: "New Arrivals", href: "/collections/new-arrivals" },
   { label: "All Products", href: "/shop" },
-  { label: "Polo T-Shirts", href: "/collections/polo-tshirts-jeans" },
-  { label: "Formal Pants", href: "/collections/formal-pants" },
-  { label: "Shirts + Jeans", href: "/collections/shirt-jeans" },
-  { label: "Drop Shoulder", href: "/collections/drop-shoulder-tshirts-jeans" },
+  { label: "Shirts", href: "/collections/shirts" },
+  { label: "Polo T-Shirts", href: "/collections/polo-tshirts" },
+  { label: "Trousers", href: "/collections/trousers" },
+  { label: "Drop Shoulder", href: "/collections/drop-shoulder" },
 ];
 
 const policyLinks = [
   { label: "Privacy Policy", href: "/policies/privacy" },
-  { label: "Return Policy", href: "/policies/returns" },
+  { label: "Return & Exchange", href: "/policies/returns" },
   { label: "Shipping Policy", href: "/policies/shipping" },
   { label: "Terms of Service", href: "/policies/terms" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Size Guide", href: "/size-guide" },
+  { label: "Our Store", href: "/our-store" },
+  { label: "About Us", href: "/about" },
 ];
 
 const IconWhatsApp = () => (

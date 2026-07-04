@@ -1,28 +1,51 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
-import { collections } from "@/data/collections";
+import { collectionAliases, collections, resolveCollectionSlug } from "@/data/collections";
 import { products } from "@/data/products";
 
 type Props = { params: Promise<{ slug: string }> };
 
 const WHATSAPP_URL = "https://wa.me/919384007074";
 
-function getRelatedProducts(collection: (typeof collections)[number]) {
+function getCollection(slug: string) {
+  const resolvedSlug = resolveCollectionSlug(slug);
+  return collections.find((item) => item.slug === resolvedSlug) ?? null;
+}
+
+function getRelatedProducts(collection: NonNullable<ReturnType<typeof getCollection>>) {
   return products.filter((product) => {
-    const haystack = `${product.name} ${product.category} ${product.collection} ${product.description}`.toLowerCase();
-    return collection.productKeywords.some((keyword) => haystack.includes(keyword));
+    if (product.collectionSlugs.some((slug) => collection.productCollectionSlugs.includes(slug))) return true;
+    const haystack = `${product.name} ${product.category} ${product.collection} ${product.description} ${product.tags.join(" ")}`.toLowerCase();
+    return collection.productKeywords.some((keyword) => haystack.includes(keyword.toLowerCase()));
   });
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const collection = getCollection(slug);
+  return {
+    title: collection?.seoTitle ?? "Collection | Life's Once Chennai",
+    description: collection?.seoDescription ?? "Explore Life's Once men's fashion collections from Kodambakkam Chennai.",
+    openGraph: {
+      title: collection?.seoTitle ?? "Collection | Life's Once Chennai",
+      description: collection?.seoDescription ?? "Explore Life's Once men's fashion collections from Kodambakkam Chennai.",
+    },
+  };
+}
+
 export function generateStaticParams() {
-  return collections.map((collection) => ({ slug: collection.slug }));
+  return [
+    ...collections.map((collection) => ({ slug: collection.slug })),
+    ...Object.keys(collectionAliases).map((slug) => ({ slug })),
+  ];
 }
 
 export default async function CollectionPage({ params }: Props) {
   const { slug } = await params;
-  const collection = collections.find((item) => item.slug === slug);
+  const collection = getCollection(slug);
 
   if (!collection) {
     return (
@@ -40,7 +63,7 @@ export default async function CollectionPage({ params }: Props) {
     );
   }
 
-  const relatedProducts = getRelatedProducts(collection);
+  const relatedProducts = collection.comingSoon ? [] : getRelatedProducts(collection);
 
   return (
     <div style={{ backgroundColor: "#FAFAF9", minHeight: "100vh", color: "#1C1917" }}>
@@ -55,8 +78,11 @@ export default async function CollectionPage({ params }: Props) {
                 {collection.title}
               </h1>
               <div style={{ width: "44px", height: "1px", backgroundColor: "#A16207", marginBottom: "22px" }} />
-              <p style={{ fontSize: "15px", color: "#57534E", lineHeight: "1.8", maxWidth: "520px", marginBottom: "30px" }}>
+              <p style={{ fontSize: "15px", color: "#57534E", lineHeight: "1.8", maxWidth: "520px", marginBottom: "20px" }}>
                 {collection.description}
+              </p>
+              <p style={{ fontSize: "12px", color: "#A16207", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "30px" }}>
+                {relatedProducts.length > 0 ? `${relatedProducts.length} products available` : "Coming soon - message us to check availability"}
               </p>
               <div className="flex flex-wrap" style={{ gap: "12px" }}>
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="lo-btn-primary inline-flex font-semibold" style={{ backgroundColor: "#1C1917", color: "#FFFFFF", fontSize: "13px", padding: "14px 28px", borderRadius: "8px", textDecoration: "none" }}>

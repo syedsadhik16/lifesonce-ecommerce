@@ -424,19 +424,6 @@ export default function CartPage() {
 
       {/* ── Footer ── */}
       <Footer />
-      {false && (
-      <div style={{ backgroundColor: "#1C1917", padding: "28px 24px", textAlign: "center" }}>
-        <p className="lo-serif italic" style={{ fontSize: "16px", color: "#78716C", marginBottom: "6px" }}>
-          Wear it ASAP!
-        </p>
-        <p style={{ fontSize: "12px", color: "#44403C" }}>
-          © {new Date().getFullYear()} Life&apos;s Once · Kodambakkam, Chennai ·{" "}
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" style={{ color: "#25D366", textDecoration: "none" }}>
-            WhatsApp Us
-          </a>
-        </p>
-      </div>
-      )}
     </div>
   );
 }

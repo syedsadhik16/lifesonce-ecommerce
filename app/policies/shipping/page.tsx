@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import PolicyPage from "@/components/PolicyPage";
+
+export const metadata: Metadata = {
+  title: "Shipping Policy | Life's Once Chennai",
+  description: "Shipping, delivery and store pickup policy for Life's Once Chennai.",
+};
 
 export default function ShippingPolicyPage() {
   return (

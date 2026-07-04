@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import PolicyPage from "@/components/PolicyPage";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Life's Once Chennai",
+  description: "Privacy policy for Life's Once WhatsApp ordering, store pickup and customer support.",
+};
 
 export default function PrivacyPolicyPage() {
   return (

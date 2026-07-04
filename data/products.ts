@@ -1,4 +1,4 @@
-export const products = [
+const baseProducts = [
   {
     id: 1,
     name: "Premium Sky Blue Shirt Set",
@@ -54,7 +54,7 @@ export const products = [
     category: "Shirts",
     collection: "Formal Wear",
     description:
-      "Classic white premium shirt paired with sleek black trousers. The ultimate formal combination for any occasion — office, events, or parties.",
+      "Classic white premium shirt paired with sleek black trousers. The ultimate formal combination for any occasion - office, events, or parties.",
     price: 2299,
     discountPrice: 1499,
     sizes: ["S", "M", "L", "XL", "XXL", "XXXL"],
@@ -86,7 +86,7 @@ export const products = [
     category: "Shirts",
     collection: "Best Sellers",
     description:
-      "Elegant grey shirt with a smooth premium finish. A timeless wardrobe staple that pairs with virtually everything — a must-have for any discerning gentleman.",
+      "Elegant grey shirt with a smooth premium finish. A timeless wardrobe staple that pairs with virtually everything - a must-have for any discerning gentleman.",
     price: 1999,
     discountPrice: 1299,
     sizes: ["S", "M", "L", "XL", "XXL", "XXXL"],
@@ -150,7 +150,7 @@ export const products = [
     category: "Shirts",
     collection: "Best Sellers",
     description:
-      "Classic black premium shirt — bold, versatile, and effortlessly stylish. A foundational wardrobe piece that commands attention at every occasion.",
+      "Classic black premium shirt - bold, versatile, and effortlessly stylish. A foundational wardrobe piece that commands attention at every occasion.",
     price: 2099,
     discountPrice: 1399,
     sizes: ["S", "M", "L", "XL", "XXL", "XXXL"],
@@ -160,3 +160,40 @@ export const products = [
     image: "/products/shirt-black.png",
   },
 ];
+
+function getCollectionSlugs(product: (typeof baseProducts)[number]) {
+  const slugs = ["all-products", "shirts", "premium-shirts"];
+  if (product.collection === "New Arrivals" || product.badge === "New Arrival") slugs.push("new-arrivals");
+  if (product.collection === "Best Sellers" || product.badge === "Best Seller") slugs.push("best-sellers");
+  if (product.discountPrice < 999) slugs.push("under-999");
+  if (product.collection === "Formal Wear") slugs.push("office-wear");
+  if (product.collection === "Smart Casuals" || product.collection === "Best Sellers") slugs.push("weekend-wear");
+  if (product.name.toLowerCase().includes("trouser")) slugs.push("trousers");
+  return Array.from(new Set(slugs));
+}
+
+export const products = baseProducts.map((product) => ({
+  ...product,
+  fit: product.name.toLowerCase().includes("slim") ? "Slim comfort fit" : "Regular comfort fit",
+  fabric: "Soft cotton-blend fabric",
+  sleeve: "Full sleeve",
+  occasion: product.collection === "Formal Wear" ? "Office wear, occasions, and smart evenings" : "Daily wear, office wear, and casual outings",
+  careInstructions: "Gentle wash recommended. Do not bleach. Iron on low to medium heat.",
+  modelInfo: "Model sizing available on request.",
+  madeIn: "India",
+  tags: [
+    product.category,
+    product.collection,
+    product.badge,
+    ...product.colors,
+  ].filter(Boolean),
+  isNewArrival: product.collection === "New Arrivals" || product.badge === "New Arrival",
+  isBestSeller: product.collection === "Best Sellers" || product.badge === "Best Seller",
+  availableSizes: product.sizes,
+  availableColors: product.colors,
+  collectionSlugs: getCollectionSlugs(product),
+  seoTitle: `${product.name} | Life's Once Chennai`,
+  seoDescription: `${product.name} from Life's Once, Kodambakkam Chennai. Order through WhatsApp or visit store for size and availability support.`,
+}));
+
+export type Product = (typeof products)[number];

@@ -687,21 +687,52 @@ export default function ProductDetailClient({ product }: { product: Product | nu
             </ul>
           </DetailSection>
 
+          <DetailSection title="Product Highlights">
+            <div style={{ display: "grid", gap: "10px" }}>
+              {[
+                "Premium fit for everyday styling",
+                "Store pickup available from Kodambakkam",
+                "WhatsApp order support before checkout",
+                "Easy exchange support for size issues",
+              ].map((point) => (
+                <div key={point} style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
+                  <span style={{ color: "#A16207", marginTop: "2px" }}><IconCheck /></span>
+                  <span style={{ fontSize: "13px", color: "#57534E", lineHeight: "1.7" }}>{point}</span>
+                </div>
+              ))}
+            </div>
+          </DetailSection>
+
           <DetailSection title="Material &amp; Fabric">
-            <p style={{ fontSize: "14px", color: "#57534E", lineHeight: "1.8" }}>{getMaterial(product.category)}</p>
+            <p style={{ fontSize: "14px", color: "#57534E", lineHeight: "1.8" }}>{product.fabric}</p>
             <p style={{ fontSize: "13px", color: "#78716C", marginTop: "8px", lineHeight: "1.8" }}>
-              All our products are imported and quality-checked before reaching you. Premium fabric with comfortable fit for everyday wear.
+              Fit: {product.fit}. Sleeve: {product.sleeve}. Occasion: {product.occasion}.
             </p>
           </DetailSection>
 
-          <DetailSection title="Care Instructions">
-            <p style={{ fontSize: "14px", color: "#57534E", lineHeight: "1.8" }}>{getCare(product.category)}</p>
+          <DetailSection title="Size &amp; Fit">
+            <p style={{ fontSize: "14px", color: "#57534E", lineHeight: "1.8" }}>
+              Available sizes: {product.availableSizes.join(", ")}. {product.modelInfo}
+            </p>
+            <a href={SIZE_HELP_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", marginTop: "12px", color: "#15803D", fontSize: "13px", fontWeight: 700, textDecoration: "none" }}>
+              Need Size Help? WhatsApp Us
+            </a>
+          </DetailSection>
+
+          <DetailSection title="Wash Care">
+            <p style={{ fontSize: "14px", color: "#57534E", lineHeight: "1.8" }}>{product.careInstructions}</p>
             <p style={{ fontSize: "13px", color: "#78716C", marginTop: "8px" }}>
-              Proper care extends the life of your garment. When in doubt, cold wash and air dry.
+              Made in {product.madeIn}. Proper care extends the life of your garment.
             </p>
           </DetailSection>
 
-          <DetailSection title="Return &amp; Exchange Policy">
+          <DetailSection title="Delivery &amp; Store Pickup">
+            <p style={{ fontSize: "14px", color: "#57534E", lineHeight: "1.8" }}>
+              Store pickup is available from Life&apos;s Once, Kodambakkam. Delivery timing and final availability are confirmed on WhatsApp before order completion.
+            </p>
+          </DetailSection>
+
+          <DetailSection title="Exchange Support">
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               {[
                 "Easy 7-day return or exchange from date of purchase.",
@@ -722,19 +753,6 @@ export default function ProductDetailClient({ product }: { product: Product | nu
       {/* ── Footer strip ── */}
       <Footer />
       {sizeGuideOpen && <SizeGuideModal onClose={() => setSizeGuideOpen(false)} />}
-      {false && (
-      <div style={{ backgroundColor: "#1C1917", padding: "28px 24px", textAlign: "center" }}>
-        <p className="lo-serif italic" style={{ fontSize: "16px", color: "#78716C", marginBottom: "6px" }}>
-          Wear it ASAP!
-        </p>
-        <p style={{ fontSize: "12px", color: "#44403C" }}>
-          © {new Date().getFullYear()} Life&apos;s Once · Kodambakkam, Chennai ·{" "}
-          <a href={`https://wa.me/919384007074`} target="_blank" rel="noopener noreferrer" style={{ color: "#25D366", textDecoration: "none" }}>
-            WhatsApp Us
-          </a>
-        </p>
-      </div>
-      )}
     </div>
   );
 }

@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import PolicyPage from "@/components/PolicyPage";
+
+export const metadata: Metadata = {
+  title: "Terms of Service | Life's Once Chennai",
+  description: "Terms of service for Life's Once WhatsApp-based ecommerce orders.",
+};
 
 export default function TermsOfServicePage() {
   return (

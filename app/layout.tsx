@@ -16,10 +16,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Life's Once | Premium Men's Fashion Store Chennai",
-  description: "Shop premium shirts, polos, pants, drop shoulder t-shirts and men's fashion from Life's Once, Kodambakkam Chennai. Order via WhatsApp or visit store.",
+  description: "Shop premium shirts, polos, trousers, jeans and men's fashion from Life's Once, Kodambakkam Chennai. Order through WhatsApp or visit our store.",
   openGraph: {
     title: "Life's Once | Premium Men's Fashion Store Chennai",
-    description: "Shop premium shirts, polos, pants, drop shoulder t-shirts and men's fashion from Life's Once, Kodambakkam Chennai. Order via WhatsApp or visit store.",
+    description: "Shop premium shirts, polos, trousers, jeans and men's fashion from Life's Once, Kodambakkam Chennai. Order through WhatsApp or visit our store.",
   },
 };
 

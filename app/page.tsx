@@ -825,120 +825,40 @@ export default function HomePage() {
       </section>
 
       {/* ──────────── 8. Footer ──────────── */}
-      <Footer />
-      {false && (
-      <footer style={{ backgroundColor: "#1C1917", borderTop: "1px solid #2D2B28", padding: "64px 0 0" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: "40px", paddingBottom: "48px" }}>
-
-            {/* Brand Column */}
-            <div>
-              {/* Logo on dark bg */}
-              <div style={{ backgroundColor: "#FAFAF9", borderRadius: "8px", padding: "8px 12px", display: "inline-block", marginBottom: "16px" }}>
-                <div className="relative" style={{ height: "40px", width: "120px" }}>
-                  <Image
-                    src="/logo.png"
-                    alt="Life's Once"
-                    fill
-                    sizes="120px"
-                    className="object-contain"
-                    style={{ objectPosition: "left center" }}
-                  />
-                </div>
-              </div>
-
-              {/* Tagline */}
-              <p className="lo-serif italic" style={{ fontSize: "16px", color: "#A8A29E", marginBottom: "10px" }}>
-                Wear it ASAP!
-              </p>
-              <p style={{ fontSize: "13px", color: "#57534E", lineHeight: "1.75", marginBottom: "20px" }}>
-                Premium men&apos;s fashion from the heart of Kodambakkam, Chennai.
-              </p>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-medium"
-                style={{ color: "#25D366", fontSize: "13px", textDecoration: "none" }}
-              >
-                <IconWhatsApp /> Chat on WhatsApp
-              </a>
-            </div>
-
-            {/* Shop Links */}
-            <div>
-              <h4 style={{ fontSize: "10px", fontWeight: 700, color: "#FAFAF9", letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: "20px" }}>
-                Shop
-              </h4>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
-                {["New Arrivals", "All Products", "Polo T-Shirts", "Formal Pants", "Shirts + Jeans", "Drop Shoulder"].map((item) => (
-                  <li key={item}>
-                    <a href="/shop" className="lo-nav-link" style={{ fontSize: "13px", color: "#78716C", textDecoration: "none" }}>
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Policies */}
-            <div>
-              <h4 style={{ fontSize: "10px", fontWeight: 700, color: "#FAFAF9", letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: "20px" }}>
-                Policies
-              </h4>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
-                {["Privacy Policy", "Return Policy", "Shipping Policy", "Terms of Service"].map((item) => (
-                  <li key={item}>
-                    <a href="/policies/privacy" className="lo-nav-link" style={{ fontSize: "13px", color: "#78716C", textDecoration: "none" }}>
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Visit Us */}
-            <div>
-              <h4 style={{ fontSize: "10px", fontWeight: 700, color: "#FAFAF9", letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: "20px" }}>
-                Visit Us
-              </h4>
-              <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-                <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
-                  <span style={{ color: "#A16207", marginTop: "2px", flexShrink: 0 }}><IconMapPin /></span>
-                  <p style={{ fontSize: "13px", color: "#78716C", lineHeight: "1.65" }}>
-                    25/A, Karnan St, Rangarajapuram,<br />Kodambakkam, Chennai – 600024
-                  </p>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                  <span style={{ color: "#A16207" }}><IconPhone /></span>
-                  <a href="tel:+919384007074" style={{ fontSize: "13px", color: "#78716C", textDecoration: "none" }}>
-                    093840 07074
-                  </a>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                  <span style={{ color: "#A16207" }}><IconClock /></span>
-                  <p style={{ fontSize: "13px", color: "#78716C" }}>9:30 AM – 11:00 PM</p>
-                </div>
-              </div>
-            </div>
+      <section style={{ padding: "80px 0", backgroundColor: "#FAFAF9" }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center" style={{ marginBottom: "40px" }}>
+            <p style={{ fontSize: "10px", fontWeight: 600, color: "#A16207", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "10px" }}>
+              Quick Help
+            </p>
+            <h2 className="lo-serif font-semibold" style={{ fontSize: "clamp(28px, 4vw, 42px)", color: "#1C1917" }}>
+              FAQ
+            </h2>
+            <div className="lo-divider" style={{ marginTop: "14px" }} />
           </div>
 
-          {/* Bottom bar */}
-          <div
-            className="flex flex-col sm:flex-row items-center justify-between"
-            style={{ borderTop: "1px solid #2D2B28", padding: "20px 0", gap: "8px" }}
-          >
-            <p style={{ fontSize: "12px", color: "#44403C" }}>
-              © {new Date().getFullYear()} Life&apos;s Once. All rights reserved.
-            </p>
-            <p style={{ fontSize: "12px", color: "#44403C" }}>
-              Kodambakkam, Chennai &middot; Premium Men&apos;s Fashion
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "16px" }}>
+            {[
+              ["How do I order?", "Add products to cart and checkout through WhatsApp."],
+              ["Can I visit the store?", "Yes, store pickup and in-store support are available."],
+              ["Need size help?", "Use the size guide or message us before ordering."],
+            ].map(([question, answer]) => (
+              <div key={question} style={{ backgroundColor: "#FFFFFF", border: "1px solid #E7E5E4", borderRadius: "14px", padding: "22px" }}>
+                <h3 className="lo-serif font-semibold" style={{ fontSize: "22px", color: "#1C1917", marginBottom: "8px" }}>{question}</h3>
+                <p style={{ fontSize: "13px", color: "#57534E", lineHeight: "1.7" }}>{answer}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center" style={{ marginTop: "28px" }}>
+            <Link href="/faq" className="lo-btn-outline inline-flex font-semibold border" style={{ borderColor: "#1C1917", color: "#1C1917", fontSize: "13px", padding: "13px 26px", borderRadius: "8px", textDecoration: "none" }}>
+              View FAQ
+            </Link>
           </div>
         </div>
-      </footer>
-      )}
+      </section>
+
+      <Footer />
     </div>
   );
 }

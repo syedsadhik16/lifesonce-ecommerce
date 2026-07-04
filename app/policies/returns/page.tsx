@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import PolicyPage from "@/components/PolicyPage";
+
+export const metadata: Metadata = {
+  title: "Return & Exchange Policy | Life's Once Chennai",
+  description: "Return and exchange policy for Life's Once products, including size issue exchange support.",
+};
 
 export default function ReturnsPolicyPage() {
   return (
