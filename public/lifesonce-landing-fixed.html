@@ -273,9 +273,6 @@ body.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45de
 .final-video{position:relative;min-height:520px;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#1A1714 0%,#0B0B0B 45%,#2C1D1F 100%);box-shadow:0 30px 80px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.16)}
 .final-video::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 72% 24%,rgba(201,21,32,.30),transparent 32%),linear-gradient(135deg,rgba(255,248,237,.10),transparent 42%);pointer-events:none}
 .campaign-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.38;background:#050505}
-.final-video-mark{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;pointer-events:none}
-.final-video-mark span{font-family:var(--font-display);font-variation-settings:"wdth" 112;font-weight:850;text-transform:uppercase;font-size:clamp(30px,4vw,52px);line-height:.95;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.5)}
-.final-video-mark span:last-child{-webkit-text-stroke-color:rgba(214,36,42,.65)}
 .video-fallback{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:34px;background:linear-gradient(to top,rgba(0,0,0,.74),rgba(0,0,0,.14) 58%,transparent)}
 .video-fallback strong{font-family:var(--font-display);font-size:clamp(28px,3vw,46px);font-weight:850;text-transform:uppercase;line-height:1;margin:12px 0;color:#fff}
 .video-fallback p{max-width:410px;color:rgba(255,255,255,.76);font-size:14px;line-height:1.65}.video-fallback code{font-family:var(--font-body);font-size:12px;color:#fff;background:rgba(255,255,255,.13);padding:2px 6px;border-radius:4px}
@@ -350,7 +347,7 @@ footer{background:var(--black);color:#fff;border-top:1px solid rgba(255,255,255,
 }
 
 /* Life's Once background-removed logo placement */
-:root{--brand-logo:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNDAgOTIiPgogIDxnIGZpbGw9IiMxMDEwMTAiPgogICAgPHBhdGggZD0iTTE4IDMwaDU2bC01IDUySDIzTDE4IDMweiIvPgogICAgPHBhdGggZD0iTTMwIDMwdi02YTE2IDE2IDAgMCAxIDMyIDB2NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTAxMDEwIiBzdHJva2Utd2lkdGg9IjYiLz4KICAgIDxjaXJjbGUgY3g9IjQ2IiBjeT0iNTAiIHI9IjUiIGZpbGw9IiNGN0VDREEiLz4KICAgIDxyZWN0IHg9IjQzIiB5PSI1NCIgd2lkdGg9IjYiIGhlaWdodD0iMTIiIHJ4PSIzIiBmaWxsPSIjRjdFQ0RBIi8+CiAgPC9nPgogIDx0ZXh0IHg9Ijk0IiB5PSI0NiIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjM0IiBsZXR0ZXItc3BhY2luZz0iMC41IiBmaWxsPSIjMTAxMDEwIj5MSUZFJiM4MjE3O1MgT05DRTwvdGV4dD4KICA8dGV4dCB4PSI5NCIgeT0iNjgiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjYwMCIgZm9udC1zaXplPSIxNCIgbGV0dGVyLXNwYWNpbmc9IjIiIGZpbGw9IiMxMDEwMTAiPndlYXIgaXQgYXNhcCE8L3RleHQ+Cjwvc3ZnPg==")}
+:root{--brand-logo:url("lifesonce-logo-bgremoved.png")}
 .life-logo-img{display:block;width:auto;height:auto;object-fit:contain;background:transparent;filter:contrast(1.05)}
 .brand{gap:12px}.brand svg,.brand span{display:none}.brand .life-logo-img{width:clamp(128px,13vw,210px);max-height:54px}
 .hero-logo{width:clamp(150px,16vw,240px);margin:0 auto 18px;opacity:0;animation:fadeUp .8s .04s cubic-bezier(.16,1,.3,1) forwards}
@@ -404,7 +401,7 @@ footer{background:var(--black);color:#fff;border-top:1px solid rgba(255,255,255,
       <li><a href="https://lifesonce-ecommerce-tagt.vercel.app/about">About Us</a></li>
       <li><a href="https://lifesonce-ecommerce-tagt.vercel.app/our-store">Contact</a></li>
     </ul>
-    <a class="brand" href="https://lifesonce-ecommerce-tagt.vercel.app/" aria-label="Life's Once home"><img class="life-logo-img" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20340%2092%22%3E%0A%20%20%3Cg%20fill%3D%22%23101010%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18%2030h56l-5%2052H23L18%2030z%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M30%2030v-6a16%2016%200%200%201%2032%200v6%22%20fill%3D%22none%22%20stroke%3D%22%23101010%22%20stroke-width%3D%226%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2246%22%20cy%3D%2250%22%20r%3D%225%22%20fill%3D%22%23F7ECDA%22/%3E%0A%20%20%20%20%3Crect%20x%3D%2243%22%20y%3D%2254%22%20width%3D%226%22%20height%3D%2212%22%20rx%3D%223%22%20fill%3D%22%23F7ECDA%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3Ctext%20x%3D%2294%22%20y%3D%2246%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-weight%3D%22900%22%20font-size%3D%2234%22%20letter-spacing%3D%220.5%22%20fill%3D%22%23101010%22%3ELIFE%26%238217%3BS%20ONCE%3C/text%3E%0A%20%20%3Ctext%20x%3D%2294%22%20y%3D%2268%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2214%22%20letter-spacing%3D%222%22%20fill%3D%22%23101010%22%3Ewear%20it%20asap%21%3C/text%3E%0A%3C/svg%3E" alt="Lifes Once wear it asap logo"></a>
+    <a class="brand" href="https://lifesonce-ecommerce-tagt.vercel.app/" aria-label="Life's Once home"><img class="life-logo-img" src="lifesonce-logo-bgremoved.png" alt="Lifes Once wear it asap logo"></a>
     <div class="nav-icons">
       <a class="icon-btn" href="https://lifesonce-ecommerce-tagt.vercel.app/shop" aria-label="Search products">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
@@ -442,7 +439,7 @@ footer{background:var(--black);color:#fff;border-top:1px solid rgba(255,255,255,
     </div>
 
     <div class="hero-center" id="heroCenter">
-      <img class="life-logo-img hero-logo" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20340%2092%22%3E%0A%20%20%3Cg%20fill%3D%22%23101010%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18%2030h56l-5%2052H23L18%2030z%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M30%2030v-6a16%2016%200%200%201%2032%200v6%22%20fill%3D%22none%22%20stroke%3D%22%23101010%22%20stroke-width%3D%226%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2246%22%20cy%3D%2250%22%20r%3D%225%22%20fill%3D%22%23F7ECDA%22/%3E%0A%20%20%20%20%3Crect%20x%3D%2243%22%20y%3D%2254%22%20width%3D%226%22%20height%3D%2212%22%20rx%3D%223%22%20fill%3D%22%23F7ECDA%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3Ctext%20x%3D%2294%22%20y%3D%2246%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-weight%3D%22900%22%20font-size%3D%2234%22%20letter-spacing%3D%220.5%22%20fill%3D%22%23101010%22%3ELIFE%26%238217%3BS%20ONCE%3C/text%3E%0A%20%20%3Ctext%20x%3D%2294%22%20y%3D%2268%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2214%22%20letter-spacing%3D%222%22%20fill%3D%22%23101010%22%3Ewear%20it%20asap%21%3C/text%3E%0A%3C/svg%3E" alt="Lifes Once wear it asap logo">
+      <img class="life-logo-img hero-logo" src="lifesonce-logo-bgremoved.png" alt="Lifes Once wear it asap logo">
       <span class="eyebrow">New Collection</span>
       <h1 class="hero-title display">
         <span class="row"><i>Wear It.</i></span>
@@ -490,7 +487,7 @@ footer{background:var(--black);color:#fff;border-top:1px solid rgba(255,255,255,
 <section class="focus-scenes" id="image-focus" aria-label="Full screen collection image animation">
   <article class="focus-scene is-scene-active" data-scene="shirts" data-href="https://lifesonce-ecommerce-tagt.vercel.app/collections/shirts">
     <div class="scene-copy">
-      <img class="life-logo-img scene-logo" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20340%2092%22%3E%0A%20%20%3Cg%20fill%3D%22%23101010%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18%2030h56l-5%2052H23L18%2030z%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M30%2030v-6a16%2016%200%200%201%2032%200v6%22%20fill%3D%22none%22%20stroke%3D%22%23101010%22%20stroke-width%3D%226%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2246%22%20cy%3D%2250%22%20r%3D%225%22%20fill%3D%22%23F7ECDA%22/%3E%0A%20%20%20%20%3Crect%20x%3D%2243%22%20y%3D%2254%22%20width%3D%226%22%20height%3D%2212%22%20rx%3D%223%22%20fill%3D%22%23F7ECDA%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3Ctext%20x%3D%2294%22%20y%3D%2246%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-weight%3D%22900%22%20font-size%3D%2234%22%20letter-spacing%3D%220.5%22%20fill%3D%22%23101010%22%3ELIFE%26%238217%3BS%20ONCE%3C/text%3E%0A%20%20%3Ctext%20x%3D%2294%22%20y%3D%2268%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2214%22%20letter-spacing%3D%222%22%20fill%3D%22%23101010%22%3Ewear%20it%20asap%21%3C/text%3E%0A%3C/svg%3E" alt="Lifes Once wear it asap logo">
+      <img class="life-logo-img scene-logo" src="lifesonce-logo-bgremoved.png" alt="Lifes Once wear it asap logo">
       <span class="scene-kicker">01 / Shirts</span>
       <h2 class="scene-title">Shirt <span>Collection</span></h2>
       <a class="scene-link" href="https://lifesonce-ecommerce-tagt.vercel.app/collections/shirts">Shop Shirts <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
@@ -502,7 +499,7 @@ footer{background:var(--black);color:#fff;border-top:1px solid rgba(255,255,255,
 
   <article class="focus-scene" data-scene="pants" data-href="https://lifesonce-ecommerce-tagt.vercel.app/collections/formal-pants">
     <div class="scene-copy">
-      <img class="life-logo-img scene-logo" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20340%2092%22%3E%0A%20%20%3Cg%20fill%3D%22%23101010%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18%2030h56l-5%2052H23L18%2030z%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M30%2030v-6a16%2016%200%200%201%2032%200v6%22%20fill%3D%22none%22%20stroke%3D%22%23101010%22%20stroke-width%3D%226%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2246%22%20cy%3D%2250%22%20r%3D%225%22%20fill%3D%22%23F7ECDA%22/%3E%0A%20%20%20%20%3Crect%20x%3D%2243%22%20y%3D%2254%22%20width%3D%226%22%20height%3D%2212%22%20rx%3D%223%22%20fill%3D%22%23F7ECDA%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3Ctext%20x%3D%2294%22%20y%3D%2246%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-weight%3D%22900%22%20font-size%3D%2234%22%20letter-spacing%3D%220.5%22%20fill%3D%22%23101010%22%3ELIFE%26%238217%3BS%20ONCE%3C/text%3E%0A%20%20%3Ctext%20x%3D%2294%22%20y%3D%2268%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2214%22%20letter-spacing%3D%222%22%20fill%3D%22%23101010%22%3Ewear%20it%20asap%21%3C/text%3E%0A%3C/svg%3E" alt="Lifes Once wear it asap logo">
+      <img class="life-logo-img scene-logo" src="lifesonce-logo-bgremoved.png" alt="Lifes Once wear it asap logo">
       <span class="scene-kicker">02 / Pants</span>
       <h2 class="scene-title">Pants <span>Collection</span></h2>
       <a class="scene-link" href="https://lifesonce-ecommerce-tagt.vercel.app/collections/formal-pants">Shop Pants <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
@@ -514,7 +511,7 @@ footer{background:var(--black);color:#fff;border-top:1px solid rgba(255,255,255,
 
   <article class="focus-scene" data-scene="polos" data-href="https://lifesonce-ecommerce-tagt.vercel.app/collections/polo-tshirts">
     <div class="scene-copy">
-      <img class="life-logo-img scene-logo" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20340%2092%22%3E%0A%20%20%3Cg%20fill%3D%22%23101010%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18%2030h56l-5%2052H23L18%2030z%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M30%2030v-6a16%2016%200%200%201%2032%200v6%22%20fill%3D%22none%22%20stroke%3D%22%23101010%22%20stroke-width%3D%226%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2246%22%20cy%3D%2250%22%20r%3D%225%22%20fill%3D%22%23F7ECDA%22/%3E%0A%20%20%20%20%3Crect%20x%3D%2243%22%20y%3D%2254%22%20width%3D%226%22%20height%3D%2212%22%20rx%3D%223%22%20fill%3D%22%23F7ECDA%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3Ctext%20x%3D%2294%22%20y%3D%2246%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-weight%3D%22900%22%20font-size%3D%2234%22%20letter-spacing%3D%220.5%22%20fill%3D%22%23101010%22%3ELIFE%26%238217%3BS%20ONCE%3C/text%3E%0A%20%20%3Ctext%20x%3D%2294%22%20y%3D%2268%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2214%22%20letter-spacing%3D%222%22%20fill%3D%22%23101010%22%3Ewear%20it%20asap%21%3C/text%3E%0A%3C/svg%3E" alt="Lifes Once wear it asap logo">
+      <img class="life-logo-img scene-logo" src="lifesonce-logo-bgremoved.png" alt="Lifes Once wear it asap logo">
       <span class="scene-kicker">03 / Polos</span>
       <h2 class="scene-title">Polo <span>T-Shirts</span></h2>
       <a class="scene-link" href="https://lifesonce-ecommerce-tagt.vercel.app/collections/polo-tshirts">Shop Polos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
@@ -528,7 +525,7 @@ footer{background:var(--black);color:#fff;border-top:1px solid rgba(255,255,255,
 <!-- ============ MARQUEE SHOWCASE ============ -->
 <section class="showcase" id="collections" aria-label="Collections on the move">
   <div class="showcase-head">
-    <img class="life-logo-img section-logo" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20340%2092%22%3E%0A%20%20%3Cg%20fill%3D%22%23101010%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18%2030h56l-5%2052H23L18%2030z%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M30%2030v-6a16%2016%200%200%201%2032%200v6%22%20fill%3D%22none%22%20stroke%3D%22%23101010%22%20stroke-width%3D%226%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2246%22%20cy%3D%2250%22%20r%3D%225%22%20fill%3D%22%23F7ECDA%22/%3E%0A%20%20%20%20%3Crect%20x%3D%2243%22%20y%3D%2254%22%20width%3D%226%22%20height%3D%2212%22%20rx%3D%223%22%20fill%3D%22%23F7ECDA%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3Ctext%20x%3D%2294%22%20y%3D%2246%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-weight%3D%22900%22%20font-size%3D%2234%22%20letter-spacing%3D%220.5%22%20fill%3D%22%23101010%22%3ELIFE%26%238217%3BS%20ONCE%3C/text%3E%0A%20%20%3Ctext%20x%3D%2294%22%20y%3D%2268%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2214%22%20letter-spacing%3D%222%22%20fill%3D%22%23101010%22%3Ewear%20it%20asap%21%3C/text%3E%0A%3C/svg%3E" alt="Lifes Once wear it asap logo">
+    <img class="life-logo-img section-logo" src="lifesonce-logo-bgremoved.png" alt="Lifes Once wear it asap logo">
     <span class="eyebrow">The Collections</span>
     <h2 class="display reveal">Style That Fits You</h2>
     <p class="reveal">Shirts, pants and tees on the move — tap any card to shop the lane.</p>
@@ -615,11 +612,9 @@ footer{background:var(--black);color:#fff;border-top:1px solid rgba(255,255,255,
         <a class="btn btn-ghost" href="https://wa.me/919384007074">Chat on WhatsApp</a>
       </div>
     </div>
-    <div class="final-video reveal from-right" aria-hidden="true">
-  <div class="final-video-mark">
-    <span>Wear It</span>
-    <span>Own It</span>
-  </div>
+    <div class="final-video reveal from-right">
+  <!-- Add the downloaded file beside this HTML as Video_20260705_213333_254.mp4. -->
+  <video class="campaign-video" autoplay loop muted playsinline preload="metadata" data-video-src="Video_20260705_213333_254.mp4" aria-label="Life's Once campaign video"></video>
 </div>
   </div>
   <div class="final-marq" aria-hidden="true">Wear It ASAP — Life's Once — Wear It ASAP — Life's Once —&nbsp;</div>
@@ -629,7 +624,7 @@ footer{background:var(--black);color:#fff;border-top:1px solid rgba(255,255,255,
 
 <footer>
   <div class="foot">
-    <img class="life-logo-img footer-logo" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20340%2092%22%3E%0A%20%20%3Cg%20fill%3D%22%23101010%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18%2030h56l-5%2052H23L18%2030z%22/%3E%0A%20%20%20%20%3Cpath%20d%3D%22M30%2030v-6a16%2016%200%200%201%2032%200v6%22%20fill%3D%22none%22%20stroke%3D%22%23101010%22%20stroke-width%3D%226%22/%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2246%22%20cy%3D%2250%22%20r%3D%225%22%20fill%3D%22%23F7ECDA%22/%3E%0A%20%20%20%20%3Crect%20x%3D%2243%22%20y%3D%2254%22%20width%3D%226%22%20height%3D%2212%22%20rx%3D%223%22%20fill%3D%22%23F7ECDA%22/%3E%0A%20%20%3C/g%3E%0A%20%20%3Ctext%20x%3D%2294%22%20y%3D%2246%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-weight%3D%22900%22%20font-size%3D%2234%22%20letter-spacing%3D%220.5%22%20fill%3D%22%23101010%22%3ELIFE%26%238217%3BS%20ONCE%3C/text%3E%0A%20%20%3Ctext%20x%3D%2294%22%20y%3D%2268%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2214%22%20letter-spacing%3D%222%22%20fill%3D%22%23101010%22%3Ewear%20it%20asap%21%3C/text%3E%0A%3C/svg%3E" alt="Lifes Once wear it asap logo">
+    <img class="life-logo-img footer-logo" src="lifesonce-logo-bgremoved.png" alt="Lifes Once wear it asap logo">
     <div class="foot-links">
       <a href="https://lifesonce-ecommerce-tagt.vercel.app/shop">Shop</a>
       <a href="https://lifesonce-ecommerce-tagt.vercel.app/our-store">Our Store</a>
@@ -778,6 +773,14 @@ document.getElementById('exploreBtn').addEventListener('click',function(e){
     entries.forEach(function(entry){entry.target.classList.toggle('is-scene-active',entry.isIntersecting);});
   },{threshold:.45});
   scenes.forEach(function(scene){io.observe(scene);});
+
+  var video=document.querySelector('.campaign-video[data-video-src]');
+  if(video&&video.dataset.videoSrc&&!video.querySelector('source')){
+    var source=document.createElement('source');
+    source.src=video.dataset.videoSrc;
+    source.type='video/mp4';
+    video.appendChild(source);
+  }
 })();
 /* 6) Image click routing and scroll focus */
 (function(){
